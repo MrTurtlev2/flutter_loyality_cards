@@ -6,13 +6,15 @@ class BarCode extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(20),
+      child: Column(children: <Widget>[
+        Image.asset('assets/images/Biedronka.png'),
         BarcodeWidget(
           barcode: Barcode.code128(),
-          data: 96526523215.toString(),
+          data: 965265215.toString(),
         ),
-      ],
+      ]),
     );
   }
 }
