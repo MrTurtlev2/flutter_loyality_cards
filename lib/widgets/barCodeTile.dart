@@ -7,14 +7,17 @@ class BarCode extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(20),
-      child: Column(children: <Widget>[
-        Image.asset('assets/images/Biedronka.png'),
-        BarcodeWidget(
-          barcode: Barcode.code128(),
-          data: 965265215.toString(),
-        ),
-      ]),
+      borderRadius: BorderRadius.circular(12),
+      child: Container(
+        color: Colors.purple.shade100,
+        child: Column(children: <Widget>[
+          Image.asset('assets/images/Biedronka.png'),
+          BarcodeWidget(
+            barcode: Barcode.code128(),
+            data: 965265215.toString(),
+          ),
+        ]),
+      ),
     );
   }
 }
