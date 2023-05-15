@@ -1,21 +1,26 @@
+import 'dart:convert';
+import 'package:flutter_loyality_card/dto/card_list.dart';
+import 'package:flutter_loyality_card/screens/add_card_screen.dart';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:flutter_loyality_card/dto/loyality_card.dart';
 
 import '../widgets/barCodeTile.dart';
 
-class MainScreen extends StatefulWidget {
-  const MainScreen({super.key, required this.title});
+class MainScreen extends StatelessWidget {
+  MainScreen({super.key, required this.title});
   final String title;
-  @override
-  State<MainScreen> createState() => _MainScreen();
-}
 
-class _MainScreen extends State<MainScreen> {
-  int _counter = 0;
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
+  final CardList cardList = CardList();
+
+
+  void _addNewCard(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const AddCardScreen(),
+      ),
+    );
   }
 
   @override
@@ -23,7 +28,7 @@ class _MainScreen extends State<MainScreen> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Text(widget.title),
+        title: Text(title),
       ),
       body: Padding(
         padding: const EdgeInsets.only(
@@ -32,17 +37,25 @@ class _MainScreen extends State<MainScreen> {
           right: 20,
           bottom: 0,
         ),
-        child: ListView.separated(
-            itemBuilder: (context, index) {
-              return const BarCode();
-            },
-            separatorBuilder: (context, index) {
-              return const SizedBox(height: 20);
-            },
-            itemCount: 100),
+        child: StreamBuilder<List<LoyalityCard>>(
+          stream: cardList.listOfCards.stream,
+          builder: (context, snapshot) {
+            if (snapshot.data != null && snapshot.data!.isNotEmpty) {
+              return ListView.separated(
+                  itemBuilder: (context, index) {
+                    return BarCode(code: snapshot.data![index].code);
+                  },
+                  separatorBuilder: (context, index) {
+                    return const SizedBox(height: 20);
+                  },
+                  itemCount: snapshot.data!.length - 1);
+            }
+            return const Center(child: CircularProgressIndicator());
+          }
+        ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: () => _addNewCard,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),

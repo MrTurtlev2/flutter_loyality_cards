@@ -2,7 +2,8 @@ import 'package:barcode_widget/barcode_widget.dart';
 import 'package:flutter/material.dart';
 
 class BarCode extends StatelessWidget {
-  const BarCode({super.key});
+  const BarCode({super.key, required this.code});
+  final String code;
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +15,7 @@ class BarCode extends StatelessWidget {
           Image.asset('assets/images/Biedronka.png'),
           BarcodeWidget(
             barcode: Barcode.code128(),
-            data: 965265215.toString(),
+            data: code,
             height: MediaQuery.of(context).size.height * 0.1,
             width: MediaQuery.of(context).size.width * 0.65,
           ),
