@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.flutter_loyality_cards">
+    package="com.example.loyality_cards_test">
    <application
-        android:label="flutter_loyality_cards"
+        android:label="loyality_cards_test"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

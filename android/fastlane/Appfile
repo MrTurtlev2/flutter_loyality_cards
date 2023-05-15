@@ -1,0 +1,8 @@
+json_key_file("integration_api_key.json") # Path to the json secret file - Follow https://docs.fastlane.tools/actions/supply/#setup to get one
+
+for_lane :deploy_to_internal_test do
+    package_name("com.esonel_mobile.esonel_mobile.beta")
+end
+for_lane :deploy_to_closed_test do
+    package_name("com.esonel_mobile.esonel_mobile.beta")
+end
