@@ -23,6 +23,7 @@ class CardList {
 
   void addNewItemToList(LoyalityCard item)  {
     listOfCards.add([item]);
+    print(item);
   }
 
 

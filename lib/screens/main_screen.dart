@@ -16,9 +16,10 @@ class MainScreen extends StatelessWidget {
 
 
   void _addNewCard(BuildContext context) {
+    cardList.addNewItemToList(LoyalityCard(id: '',name: '', image: '', code: ''));
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => const AddCardScreen(),
+        builder: (context) => AddCardScreen(cardList: cardList),
       ),
     );
   }
@@ -57,7 +58,7 @@ class MainScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => _addNewCard,
+        onPressed: () => _addNewCard(context),
         tooltip: 'add new card',
         backgroundColor: Colors.black,
         child: const Icon(Icons.add),

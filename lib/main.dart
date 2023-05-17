@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_loyality_card/screens/add_card_screen.dart';
 import 'package:flutter_loyality_card/screens/login_screen.dart';
 import 'package:flutter_loyality_card/screens/main_screen.dart';
 
@@ -34,8 +35,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    // return  MainScreen(title: widget.title);
     return const LoginScreen();
-    // return Login(title: widget.title);
   }
 }
